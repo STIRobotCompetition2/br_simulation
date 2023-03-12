@@ -1,0 +1,18 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py">
+    <arg name="server" value="false"/>
+    
+  </include>
+  <include file="$(find-pkg-share gazebo_ros)/launch/gzserver.launch.py">
+    <arg name="verbose" value="true"/>
+    <arg name="world" value="/usr/share/gazebo-11/worlds/empty.world"/>
+    
+  </include>
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher" output="screen">
+        <param name="robot_description" value="$(command 'xacro $(find-pkg-share br_description)/urdf/budget_roomba.urdf.xacro')"/>
+    </node>
+  <!-- <node name="spawn_urdf" pkg="gazebo_ros" exec="spawn_entity.py" args="-file $(find-pkg-share br_description)/urdf/budget_roomba.urdf.xacro -entity budget_roomba" /> -->
+    <node name="spawn_urdf" pkg="gazebo_ros" exec="spawn_entity.py" args="-topic robot_description -entity budget_roomba">
+    </node>
+</launch>
