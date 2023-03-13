@@ -6,6 +6,17 @@
   <description>TODO: Package description</description>
   <maintainer email="sven.becker@epfl.ch">svenbecker</maintainer>
   <license>TODO: License declaration</license>
+  <depend>arena_gazebo</depend>
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_ros_pkgs</depend>
+  <depend>teleop_twist_keyboard</depend>
+
+
+  <depend>gazebo_plugins</depend>
+
+  <depend>br_description</depend>
+
+
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
