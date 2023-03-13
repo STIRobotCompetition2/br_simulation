@@ -6,7 +6,7 @@
   </include>
   <include file="$(find-pkg-share gazebo_ros)/launch/gzserver.launch.py">
     <arg name="verbose" value="true"/>
-    <arg name="world" value="/usr/share/gazebo-11/worlds/empty.world"/>
+    <arg name="world" value="$(find-pkg-share arena_gazebo)/sdf/arena.world"/>
     
   </include>
   <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher" output="screen">
