@@ -26,8 +26,31 @@ endif()
 ament_package()
 
 # Install launch files.
+
+
+include_directories(include)
+find_package(gazebo REQUIRED)
+find_package(gazebo_ros REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+
+
+add_library(budget_roomba_ros_plugin SHARED src/BudgetRoombaROSPlugin.cpp)
+
+
+ament_target_dependencies(budget_roomba_ros_plugin
+  gazebo_ros
+  rclcpp
+  tf2_ros
+  geometry_msgs)
+
+install(TARGETS
+  budget_roomba_ros_plugin
+  DESTINATION share/${PROJECT_NAME})
+
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
 )
-
