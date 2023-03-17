@@ -3,6 +3,7 @@
 #include <gazebo/physics/physics.hh>
 #include <iostream>
 #include <gazebo_ros/node.hpp>
+#include <gazebo_ros/conversions/builtin_interfaces.hpp>
 #include "geometry_msgs/msg/transform_stamped.hpp"
 
 namespace gazebo
@@ -41,7 +42,8 @@ void BudgetRoombaROSPlugin::Update()
     geometry_msgs::msg::TransformStamped robot_pose_tf;
     robot_pose_tf.child_frame_id = this->robot_base_frame_id_;
     robot_pose_tf.header.frame_id = this->world_frame_id_;
-    robot_pose_tf.header.stamp = this->ros_node_->get_clock()->now();
+    
+    robot_pose_tf.header.stamp = gazebo_ros::Convert<builtin_interfaces::msg::Time>(this->world_->SimTime());
 
     robot_pose_tf.transform.translation.x = robot_pose_link_pose.Pos().X();
     robot_pose_tf.transform.translation.y = robot_pose_link_pose.Pos().Y();
